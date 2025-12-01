@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  discord-bot:
+    build: .
+    container_name: maniak-discord-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - TICKET_TOOL_BOT_ID=557628352828014614
+    volumes:
+      - ./logs:/app/logs

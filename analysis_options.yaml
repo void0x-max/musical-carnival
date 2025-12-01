@@ -1,0 +1,18 @@
+include: package:lints/recommended.yaml
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+  errors:
+    unused_element: warning
+    unused_local_variable: warning
+
+linter:
+  rules:
+    - always_declare_return_types
+    - avoid_print
+    - constant_identifier_names
+    - non_constant_identifier_names
+    - prefer_final_fields
+    - prefer_final_locals
