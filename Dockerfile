@@ -8,13 +8,15 @@ RUN dart pub get
 COPY . .
 RUN dart pub get --offline
 
-FROM dart:stable-slim
+# Folosește aceeași imagine pentru runtime
+FROM dart:stable
 
 WORKDIR /app
 
+# Copiază aplicația compilată
 COPY --from=build /app /app
 
-# Create non-root user
+# Creează utilizator non-root
 RUN useradd -m -u 1000 discordbot
 USER discordbot
 
