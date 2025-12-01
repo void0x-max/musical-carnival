@@ -8,13 +8,16 @@ RUN dart pub get
 COPY . .
 RUN dart pub get --offline
 
-# Folosește aceeași imagine pentru runtime
-FROM dart:stable
+FROM dart:slim
 
 WORKDIR /app
 
-# Copiază aplicația compilată
 COPY --from=build /app /app
+
+# Instalează dependințe runtime necesare
+RUN apt-get update && apt-get install -y \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
 # Creează utilizator non-root
 RUN useradd -m -u 1000 discordbot
